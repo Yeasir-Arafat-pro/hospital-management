@@ -1,5 +1,4 @@
 const express = require('express')
-const morgan = require('morgan')
 const cors = require('cors')
 const createErrors = require('http-errors')
 const xssClean = require('xss-clean')
@@ -21,7 +20,6 @@ const roomRoute = require('./routes/roomRoute')
 
 const app = express()
 app.use(cookies())
-app.use(morgan('dev'))
 app.use(xssClean())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
