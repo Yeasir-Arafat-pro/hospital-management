@@ -4,7 +4,7 @@ const localUrl = 'mongodb://localhost:27017/hospitalManagementDB'
 
 const connectDB = async ()=>{
     try {
-      const url = NODE_ENV === 'production' ? localUrl : localUrl
+      const url = NODE_ENV === 'production' ? mongodbURL : localUrl
       await  mongoose.connect(url)
       console.log('✅ db is connected');
       mongoose.connection.on('error', (error)=>{
