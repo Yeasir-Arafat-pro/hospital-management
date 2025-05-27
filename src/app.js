@@ -35,7 +35,7 @@ app.use(rateLimiter)
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5001',
-  'https://hospital-management-with-react-hxd4-wtw4c6255.vercel.app',
+  'https://hospital-management-with-react.vercel.app',
 ];
 
 app.use(cors({
