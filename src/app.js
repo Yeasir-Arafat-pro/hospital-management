@@ -31,11 +31,21 @@ const rateLimiter = rateLimit({
 });
 
 app.use(rateLimiter)
+// ২) CORS সেটআপে তোমার Vercel URL যোগ করো
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:5001',
+  'https://hospital-management-with-react-hxd4-wtw4c6255.vercel.app',
+];
 
 app.use(cors({
-  origin: "http://localhost:5001", // তোমার ফ্রন্টএন্ডের URL
-  origin: "http://localhost:5173", // তোমার ফ্রন্টএন্ডের URL
-  credentials: true  // এটা না দিলে cookie পাঠাবে না
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
 }));
 
 app.use((req, res, next) => {
