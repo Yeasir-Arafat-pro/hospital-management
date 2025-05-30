@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const createErrors = require('http-errors')
 const xssClean = require('xss-clean')
+//const morgan = require('morgan')
 const rateLimit = require('express-rate-limit')
 const cookies = require('cookie-parser')
 const { errorResponse, successResponse } = require('./controllers/responseController')
@@ -17,16 +18,17 @@ const roomRoute = require('./routes/roomRoute')
 
 
 
-
 const app = express()
 app.use(cookies())
+//app.use(morgan('dev'))
 app.use(xssClean())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+app.set('trust proxy', 2);
 const rateLimiter = rateLimit({
     windowMs: 1*60*1000,
-    max: 20,
+    max: 100,
     message: 'Too many request from this IP. please try agian later'
 });
 
