@@ -20,8 +20,25 @@ const seedUserData = async (req, res, next) => {
     })
     
    } catch (error) {
-    next(error)
+       
+       next(error)
+    }
+}
+
+const handlePing = (req, res, next) => {
+   try {
+     const ping = new Date().toISOString()
+    console.log('ping', ping)
+    successResponse(res, {
+        statusCode: 200,
+        message: 'Seed Data Insert Successfully',
+        payload: {ping}
+    })
+   } catch (error) {
+       next(error)
+
+    
    }
 }
 
-module.exports = {seedUserData}
+module.exports = {seedUserData, handlePing}

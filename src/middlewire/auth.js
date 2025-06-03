@@ -21,8 +21,6 @@ const isLoggedIn = async (req, res, next) => {
         throw createError(404,'you are not logged in, please login first')    
     }
 req.user = decode.user
-
-    console.log('islogged',req.user);
     
 next()
 

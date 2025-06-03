@@ -71,7 +71,6 @@ const handleGetDepartmentById = async (req, res, next) => {
 const handleCreateDepartment = async (req, res, next) => {
   try {
     const { name, description } = req.body;
-    console.log(req.user);
     
     const createdBy = req.user._id; // assume auth middleware
 

@@ -34,9 +34,6 @@ const handleLogin = async (req, res, next) => {
         const refreshToken =  createJSONwebToken({user},'refreshToken', '7d')
         
         
-        console.log('accesstoken', accessToken);
-        
-        
         res.cookie("accessToken", accessToken, {
             maxAge: 2 * 60 * 60 * 1000, // 2 hours
             httpOnly: NODE_ENV === 'production' ? true : false, // XSS আক্রমণ প্রতিরোধ (সাধারণত true রাখা ভালো)
@@ -78,8 +75,6 @@ const handleLogin = async (req, res, next) => {
                 const userWithoutPassword = user.toObject()
                 delete userWithoutPassword.password;
                 
-                console.log('asdsf', email);
-                console.log(userWithoutPassword);
                 
         successResponse(res, {
             statusCode: 200,

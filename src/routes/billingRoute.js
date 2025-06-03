@@ -1,12 +1,15 @@
 const billingRoute = require('express').Router();
 
-const { handleCreateBilling, handleGetAllBillings } = require('../controllers/billingContrtoller');
+const { handleCreateBilling, handleGetAllBillings, handleGetBillingById, handleUpdateBillingById, handleDeleteBillingById } = require('../controllers/billingContrtoller');
 // controller
 const { isLoggedIn } = require('../middlewire/auth');
 
 
 
-billingRoute.post('/create', isLoggedIn, handleCreateBilling)
+billingRoute.put('/edit/:id', handleUpdateBillingById)
+billingRoute.delete('/:id',  handleDeleteBillingById)
+billingRoute.get('/:id',  handleGetBillingById)
+billingRoute.post('/create', handleCreateBilling)
 billingRoute.get('/', handleGetAllBillings)
 
 

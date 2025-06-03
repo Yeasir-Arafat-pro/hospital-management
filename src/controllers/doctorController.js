@@ -19,7 +19,7 @@ const handleGetAllDoctors = async (req, res, next) => {
     const limit        = parseInt(req.query.limit, 10) || '';
     const regex        = new RegExp(search, 'i');
 
-    const filter = { isActive: true };
+    const filter = {  };
     if (search)       filter.name      = { $regex: regex };
     if (specialty)    filter.specialty = { $regex: new RegExp(specialty, 'i') };
     if (departmentId) filter.department = departmentId;
